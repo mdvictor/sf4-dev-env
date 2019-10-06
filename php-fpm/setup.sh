@@ -11,6 +11,13 @@ if [ $CREATE_NEW_PROJECT == 'true' ]
 then
 	echo "Creating new project named '$PROJECT_NAME' ...";
 	symfony new $PROJECT_TYPE $PROJECT_NAME;
+
+	echo "Creating symlink between dev.log and logs/symfony folder and setting read/write permissions.";
+	log_file=$PROJECT_NAME;
+	touch /var/www/projects/$PROJECT_NAME/var/log/dev.log;
+
+	ln -s /var/www/projects/$PROJECT_NAME/var/log/dev.log /var/www/logs/symfony/${log_file}_dev.log;
+	chmod 666 /var/www/projects/$PROJECT_NAME/var/log/dev.log;
 else
 	echo "Skiping creating a new project!";
 fi
