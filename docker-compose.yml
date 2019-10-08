@@ -54,6 +54,7 @@ services:
           context: elasticsearch/
           args:
             ELK_VERSION: $ELK_VERSION
+        container_name: sf4dev_elasticsearch    
         volumes:
           - type: bind
             source: ./elasticsearch/config/elasticsearch.yml
@@ -67,7 +68,7 @@ services:
           - "9300:9300"
         environment:
           ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-          ELASTIC_PASSWORD: changeme
+          ELASTIC_PASSWORD: sfdev
         networks:
           - elk
 
@@ -76,6 +77,7 @@ services:
           context: logstash/
           args:
             ELK_VERSION: $ELK_VERSION
+        container_name: sf4dev_logstash
         volumes:
           - type: bind
             source: ./logstash/config/logstash.yml
@@ -100,6 +102,7 @@ services:
           context: kibana/
           args:
             ELK_VERSION: $ELK_VERSION
+        container_name: sf4dev_kibana    
         volumes:
           - type: bind
             source: ./kibana/config/kibana.yml
@@ -111,6 +114,23 @@ services:
           - elk
         depends_on:
           - elasticsearch
+
+    filebeat:
+        hostname: filebeat
+        container_name: sf4dev_filebeat
+        image: docker-logs-elk/filebeat:1.0.0
+        build:
+          context: filebeat
+          dockerfile: Dockerfile
+        volumes:
+         - "/var/lib/docker/containers:/usr/share/dockerlogs/data:ro"
+         - "/var/run/docker.sock:/var/run/docker.sock"
+        networks:
+           - elk    
+        ports:
+          - "5044:5044"   
+        links:
+           - logstash
 
 networks:
   elk:

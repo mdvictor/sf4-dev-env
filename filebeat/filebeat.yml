@@ -1,0 +1,19 @@
+filebeat.prospectors:
+- type: docker
+  paths:
+    - '/var/lib/docker/containers/*/*.log'
+    - '/var/www/projects/*/var/log/*.log'
+  containers.ids: '*'  
+
+processors:
+  - decode_json_fields:
+      fields: ["host","application","short_message"]
+      target: ""
+      overwrite_keys: true
+  - add_docker_metadata: ~
+
+output.logstash:
+  hosts: ["logstash:5000"]
+
+logging.to_files: true
+logging.to_syslog: false
