@@ -19,7 +19,7 @@ services:
             - "9000:9001"
         volumes:
             - ./projects:/var/www/projects
-            - ./logs/symfony:/var/www/logs/symfony:cached
+            - ./logs/symfony:/var/www/logs/symfony:rw,cached
         links:
             - db
         extra_hosts:
@@ -88,7 +88,7 @@ services:
             target: /usr/share/logstash/pipeline
             read_only: true
         ports:
-          - "5000:5000/tcp"
+          - "5000:5000"
           - "9600:9600"
         environment:
           LS_JAVA_OPTS: "-Xmx256m -Xms256m"
@@ -123,14 +123,13 @@ services:
           context: filebeat
           dockerfile: Dockerfile
         volumes:
-         - "/var/lib/docker/containers:/usr/share/dockerlogs/data:ro"
-         - "/var/run/docker.sock:/var/run/docker.sock"
+         # - "/var/lib/docker/containers:/usr/share/dockerlogs/data:ro"
+         # - "/var/run/docker.sock:/var/run/docker.sock"
+         - "./logs/symfony:/var/www/symfony/logs:ro"
         networks:
            - elk    
         ports:
-          - "5044:5044"   
-        links:
-           - logstash
+          - "5044:5044"
 
 networks:
   elk:
