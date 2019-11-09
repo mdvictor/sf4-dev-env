@@ -7,9 +7,10 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Assistant|Notable&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
+  <!-- <link rel="icon" href="https://www.shareicon.net/data/512x512/2016/06/19/603895_prog_512x512.png" /> -->
+  <link rel="icon" href="https://cdn.auth0.com/blog/symfony-blog/logo.png" />
 </head>
 
 <style>
@@ -82,6 +83,12 @@
 	    line-height: 60px;
 	    background-color: #B2B09B;
 	}
+
+	a:link, a:visited {
+    	text-decoration: none;
+    	color: black;
+    	cursor: pointer;
+	}
 </style>
 
 <body>
@@ -113,7 +120,7 @@
 
 <footer class="footer">
       <div class="container" style="text-align:center">
-        <span style="color: white">Place sticky footer content here.</span>
+        <span style="color: white">Created by <a class="nostyle" target="_blank" href="https://github.com/mdvictor/">mdvictor <i class="fa fa-github"></i></a></span>
       </div>
     </footer>
 

@@ -26,14 +26,14 @@ GIT_NAME="John Doe"
 
 ## Acces to the different services
 
-###PHPMyAdmin
+### PHPMyAdmin
 There is a `phpmyadmin` instance at port `8080`. By default, the container creates a database called `symfony` that has the following credentials:
 	- User: symfony
 	- Password: symfony
 
 The `root` account has the default password: `root`
 
-###Logs and Kibana
+### Logs and Kibana
 All Symfony logs are dumped on your local machine in the `logs` folder within this repository.
 
 Kibana is available at port `5601`. 
@@ -50,6 +50,9 @@ monolog:
             formatter: 'monolog.formatter.json'
             max_files: 10
 ```
+
+### Makefile
+There is a Makefile that gives some shortcuts on how to manage the containers.
 
 ## Domain-wide index page
 All dev projects are set in subdirectories named after the `PROJECT_NAME` parameter. You can access any of them from the main domain-wide index page. All your projects are shown
