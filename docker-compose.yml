@@ -123,8 +123,6 @@ services:
           context: filebeat
           dockerfile: Dockerfile
         volumes:
-         # - "/var/lib/docker/containers:/usr/share/dockerlogs/data:ro"
-         # - "/var/run/docker.sock:/var/run/docker.sock"
          - "./logs/symfony:/var/www/symfony/logs:ro"
         networks:
            - elk    
