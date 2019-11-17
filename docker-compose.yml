@@ -13,7 +13,12 @@ services:
             MYSQL_PASSWORD: symfony
 
     php:
-        build: ./php-fpm
+        build:
+            context: ./php-fpm
+            dockerfile: Dockerfile
+            args:
+                UID: 1000
+                GID: 1000    
         container_name: sf4dev_php
         ports:
             - "9000:9001"
@@ -25,7 +30,7 @@ services:
         extra_hosts:
             - "docker-host.localhost:127.0.0.1"
         env_file:
-            - ./container-preparation.env    
+            - ./container-preparation.env
 
     nginx:
         build: ./nginx

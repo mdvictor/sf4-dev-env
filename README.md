@@ -6,6 +6,7 @@
 The purpose of this tool is to create a fast environment for Symfony4 development.
 
 ## Usage
+  * Change the `UID` and `GID` build arguments in docker-compose with your specific host user uid/gid. This way, you will be able to modify your project files on your host.
   * Use `docker-compose build` to build your containers.
   * Build a `container-preparation.env` file in which you will add your desired `ENV` variables. E.g:
 ```
@@ -22,7 +23,7 @@ GIT_NAME="John Doe"
 
  *The `CREATE_NEW_PROJECT` flag decides whether the container creates a new project based on the two flags presented above or simply starts the containers so they can be used on existing projects.* 
 
-  * Run `docker-compose up` and wait for your new Symfony4 project to be installed!
+ * Run `docker-compose up` and wait for your new Symfony4 project to be installed!
 
 ## Acces to the different services
 

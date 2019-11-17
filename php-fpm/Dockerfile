@@ -36,8 +36,6 @@ RUN apk add --update --no-cache \
     curl \
     git
 
-RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
@@ -58,6 +56,18 @@ ENV PROJECT_NAME symfony
 ENV PROJECT_TYPE --full
 ENV GIT_EMAIL john.smith@email.com
 ENV GIT_NAME John Smith
+
+ARG UID=1234
+ARG GID=1234
+
+WORKDIR /var/www/projects
+EXPOSE 9001
+
+RUN addgroup --gid $GID -S sfdev && adduser -S sfdev -u $UID -h /home/sfdev -G sfdev
+RUN chown -R sfdev /var/log/php7 
+USER sfdev
+
+RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 CMD ["/setup.sh"]
 
