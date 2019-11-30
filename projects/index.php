@@ -98,6 +98,12 @@
 
 		$rootUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 		$directoryContents = array_diff(scandir('.'), ['.', '..', INDEX_FILE, MAIN_INDEX_FILES_FOLDER]);
+
+		foreach ($directoryContents as $key => $file) {
+			if (!is_dir($file)) {
+				unset($directoryContents[$key]);	
+			}
+		}
 	?>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
