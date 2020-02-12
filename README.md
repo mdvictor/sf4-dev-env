@@ -59,6 +59,6 @@ There is a Makefile that gives some shortcuts on how to manage the containers.
 All dev projects are set in subdirectories named after the `PROJECT_NAME` parameter. You can access any of them from the main domain-wide index page. All your projects are shown
 in this page.
 
-Don't forget to add the domain `sf4-domain.localhost` to your `/etc/hosts`!
+Don't forget to add the domain `sf4-dev.localhost` to your `/etc/hosts`!
 
 ### Enjoy the Symfony Development Environment!
